@@ -1,0 +1,23 @@
+{
+  "name": "cena-revisao",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22.13.0"},
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "check": "tsc --noEmit && node --check public/app.js && node --check public/review.js",
+    "test": "node tests/sharing.mjs",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "predeploy": "node scripts/predeploy.mjs",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 migrations apply cena-revisao --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260515.1",
+    "esbuild": "0.28.0",
+    "miniflare": "4.20260515.0",
+    "typescript": "5.9.3",
+    "wrangler": "4.92.0"
+  }
+}

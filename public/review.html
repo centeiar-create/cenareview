@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#11141b"><meta name="robots" content="noindex,nofollow">
+  <title>Cena — revisão compartilhada</title>
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css">
+  <script defer src="/review.js"></script>
+</head>
+<body class="reviewer-view">
+  <div class="app">
+    <header class="topbar"><div class="wordmark">cena<span> / </span><small>revisão compartilhada</small></div><div class="top-actions"><span class="local-badge"><span class="dot"></span><span id="connectionStatus">Conectando…</span></span><button id="identifyButton" class="button primary">Identificar-me</button></div></header>
+    <main>
+      <section class="project-header"><div class="project-title"><div class="eyebrow" id="scopeLabel">UM NOVO OLHAR</div><div class="title-row"><h1 id="projectName">Carregando a revisão…</h1><span class="status-pill" id="reviewStatus">Em revisão</span></div><p id="projectSub">Comentários no momento certo.</p></div><div class="review-progress"><div><span id="progressText">Aguardando os ajustes</span><strong id="progressPercent">—</strong></div><div class="progress-track"><span id="progressBar"></span></div></div></section>
+      <div id="reviewError" class="review-error" role="alert" hidden></div>
+      <section class="workspace" id="reviewWorkspace" aria-label="Revisão compartilhada" hidden>
+        <div class="viewer-column">
+          <div class="viewer-top"><div class="file-name"><span id="fileName"></span></div><div class="version-tools"><label class="sr-only" for="videoSelect">Escolher vídeo</label><select id="videoSelect"></select></div></div>
+          <div class="stage" id="stage"><video id="video" playsinline controls preload="metadata"></video><div id="emptyStage" class="empty-stage" hidden><h2>O vídeo saiu. A revisão ficou.</h2><p>O prazo do arquivo terminou ou ele foi excluído. Os comentários continuam disponíveis.</p></div></div>
+          <div id="reviewMarkers" class="review-markers" aria-label="Momentos comentados"></div>
+          <div class="viewer-footer"><span id="sourceLabel"></span><button class="text-button" id="captureButton">Usar o momento atual</button></div>
+          <div class="flow-card"><div class="flow-heading"><span>Um comentário no momento certo.</span></div><div class="flow-steps"><span><b>01</b> Pause o vídeo</span><span><b>02</b> Descreva o ajuste</span><span><b>03</b> Acompanhe a revisão</span></div><p>Clique em um comentário para voltar ao trecho. Os vídeos ficam por 30 dias a partir do envio; os comentários são preservados.</p></div>
+        </div>
+        <aside class="comments-panel" aria-label="Comentários">
+          <div class="panel-heading"><h2>Ajustes <span id="commentCount">0</span></h2><button id="newCommentButton" class="text-button">Comentar</button></div>
+          <div class="filters" role="group" aria-label="Filtrar comentários"><button data-filter="open" class="selected">Abertos</button><button data-filter="done">Concluídos</button><button data-filter="all">Todos</button></div>
+          <div class="search-wrap"><input id="search" placeholder="Buscar nos ajustes…" aria-label="Buscar nos ajustes"></div>
+          <div id="commentsList" class="comments-list" aria-live="polite"></div>
+          <form id="commentForm" class="composer">
+            <div class="composer-top"><span class="mini-avatar" id="composerAvatar">?</span><b id="composerName">Seu olhar faz a diferença</b><span id="captureTime" class="time-chip">00:00.000</span></div>
+            <div class="composer-mode"><label><input type="radio" name="mode" value="point" checked> Momento</label><label><input type="radio" name="mode" value="range"> Trecho</label><label><input type="radio" name="mode" value="general"> Geral</label></div>
+            <div class="time-fields" id="timeFields"><label>Início<input id="startTime" value="00:00.000" inputmode="decimal" autocomplete="off"></label><label id="endField" hidden>Fim<input id="endTime" value="00:02.000" inputmode="decimal" autocomplete="off"></label></div>
+            <label class="sr-only" for="commentText">Descreva o ajuste</label><textarea id="commentText" placeholder="O que precisa mudar neste momento?" rows="3" maxlength="4000" required></textarea>
+            <div class="composer-meta"><label class="sr-only" for="category">Categoria</label><select id="category"><option>Texto</option><option>Imagem</option><option>Áudio</option><option>Ritmo</option><option>Geral</option></select><label class="sr-only" for="priority">Prioridade</label><select id="priority"><option value="normal">Prioridade normal</option><option value="high">Prioridade alta</option></select></div>
+            <div class="composer-bottom"><span id="composerHint">Nome e e-mail antes de comentar</span><button id="cancelEdit" class="text-button" type="button" hidden>Cancelar</button><button id="submitComment" class="button primary">Adicionar</button></div>
+            <p id="formError" class="form-error" role="alert" hidden></p>
+          </form>
+        </aside>
+      </section>
+      <footer class="bottom-note"><span>CENTEIO DIGITAL <b>×</b> CENA</span><p>Este link dá acesso apenas ao conteúdo compartilhado. O responsável pode encerrá-lo a qualquer momento.</p></footer>
+    </main>
+  </div>
+  <dialog id="identityModal"><p class="modal-eyebrow">ANTES DO SEU PRIMEIRO COMENTÁRIO</p><h2 class="modal-title">Como você se chama?</h2><p class="modal-description">Informe seu nome e e-mail para identificar seus comentários. Sem senha ou criação de conta.</p><form id="identityForm" class="modal-form"><label>Nome<input id="reviewerName" name="name" autocomplete="name" minlength="2" maxlength="80" required></label><label>E-mail<input id="reviewerEmail" name="email" type="email" autocomplete="email" maxlength="254" required></label><p class="modal-description">Seu nome aparece nos comentários. Seu e-mail fica visível apenas para quem administra o projeto.</p><p id="identityError" class="form-error" role="alert" hidden></p><button id="identitySubmit" class="button primary">Continuar para comentar</button></form><button id="closeIdentity" class="icon-button modal-close" aria-label="Fechar">×</button></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
