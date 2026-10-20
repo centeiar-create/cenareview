@@ -4,7 +4,8 @@ Repositório: `centeiar-create/cenareview` · branch: `main` · diretório raiz:
 
 ## Recursos
 
-- Worker: `cena-revisao`.
+- Worker: `cenareview`.
+- Endereço: https://cenareview.centeiar.workers.dev/admin.
 - D1: `cena-revisao`, binding `DB`. O identificador está configurado em `wrangler.jsonc`.
 - R2: `cena-revisao-videos`, binding `BUCKET`, **privado**.
 - Limites no aplicativo: 1 GB no total, 100 MB por vídeo, 200 arquivos ativos, retenção de 30 dias.
@@ -17,7 +18,7 @@ Em Workers & Pages, crie uma aplicação conectada ao GitHub e selecione `cenare
 
 | Campo | Valor |
 | --- | --- |
-| Nome | `cena-revisao` |
+| Nome | `cenareview` |
 | Branch de produção | `main` |
 | Diretório raiz | `/` |
 | Instalação | `npm ci` (detectado pelo package-lock) |

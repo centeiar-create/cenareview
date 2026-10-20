@@ -1,6 +1,6 @@
 # Cena — revisão de vídeo
 
-Versão independente para Cloudflare Workers, R2 e D1. Reaproveita a interface da Cena e remove a dependência do login OpenAI. **Código preparado e testado localmente; esta versão ainda não foi publicada na conta Cloudflare.**
+Versão independente para Cloudflare Workers, R2 e D1. Reaproveita a interface da Cena e remove a dependência do login OpenAI. Publicada em [cenareview.centeiar.workers.dev](https://cenareview.centeiar.workers.dev/admin), com publicação automática a partir de `main`. A administração exige Cloudflare Access.
 
 ## Fluxo de revisão
 
@@ -31,7 +31,7 @@ Requer Node 22.13+ e uma conta Cloudflare com Workers, D1, R2 e Access habilitad
 2. Crie os recursos: `npx wrangler d1 create cena-revisao` e `npx wrangler r2 bucket create cena-revisao-videos`.
 3. Copie o `database_id` retornado para `wrangler.jsonc` e confira os nomes dos recursos. Não compartilhe o bucket com outro aplicativo, pois a limpeza atua sobre os registros deste banco.
 4. No Cloudflare Access, crie uma aplicação **self-hosted com proteção por caminho**, cobrindo `/admin`, `/admin/*` e `/api/admin/*` no domínio escolhido. Autorize somente seu e-mail. É possível usar o PIN por e-mail da Cloudflare para a administração. Os revisores não passam por esse fluxo.
-5. Preencha `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` e `OWNER_EMAIL` em **Workers → cena-revisao → Settings → Variables and Secrets**. Não declare valores vazios para elas no repositório. Domínio de equipe e AUD vêm da aplicação Access. **Não proteja o Worker inteiro nem os caminhos `/r/*` e `/api/review/*`**, pois isso exigiria login dos revisores. As APIs de revisão validam seus próprios links.
+5. Preencha `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` e `OWNER_EMAIL` em **Workers → cenareview → Settings → Variables and Secrets**. Não declare valores vazios para elas no repositório. Domínio de equipe e AUD vêm da aplicação Access. **Não proteja o Worker inteiro nem os caminhos `/r/*` e `/api/review/*`**, pois isso exigiria login dos revisores. As APIs de revisão validam seus próprios links.
 6. Execute `npm run db:migrate`, `npm run check`, `npm test` e `npm run build`.
 7. Execute `npm run deploy`. Só então conecte o domínio desejado em Workers → Settings → Domains & Routes, conferindo que os caminhos administrativos desse domínio estão incluídos na aplicação Access.
 8. Configure o ciclo de vida R2 descrito acima. No Worker, confirme a tarefa Cron `*/15 * * * *`.
