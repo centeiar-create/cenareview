@@ -36,5 +36,11 @@
     "enabled": false
   },
   "keep_vars": true,
-  "preview_urls": false
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "cenareview.centeiodigital.com",
+      "custom_domain": true
+    }
+  ]
 }

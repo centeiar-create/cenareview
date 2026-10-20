@@ -1,6 +1,6 @@
 # Cena — revisão de vídeo
 
-Versão independente para Cloudflare Workers, R2 e D1. Reaproveita a interface da Cena e remove a dependência do login OpenAI. Publicada em [cenareview.centeiar.workers.dev](https://cenareview.centeiar.workers.dev/admin), com publicação automática a partir de `main`. A administração exige Cloudflare Access.
+Versão independente para Cloudflare Workers, R2 e D1. Reaproveita a interface da Cena e remove a dependência do login OpenAI. Publicada em [cenareview.centeiodigital.com](https://cenareview.centeiodigital.com/), com publicação automática a partir de `main`. A administração exige Cloudflare Access.
 
 ## Fluxo de revisão
 
@@ -23,7 +23,7 @@ O bucket permanece privado: não habilite domínio público nem `r2.dev`. Tanto 
 
 ## Publicação na Cloudflare
 
-Consulte também [PUBLICACAO.md](./PUBLICACAO.md) para a publicação pelo GitHub com Workers Builds. As variáveis administrativas ficam no painel Cloudflare; `keep_vars: true` evita que novas publicações as apaguem.
+Consulte também [PUBLICACAO.md](./PUBLICACAO.md) para a publicação pelo GitHub com Workers Builds. O domínio de produção `cenareview.centeiodigital.com` está declarado em `wrangler.jsonc`. Os caminhos administrativos do domínio próprio e do endereço `workers.dev` pertencem à mesma aplicação Access; os links anteriores continuam válidos. As variáveis administrativas ficam no painel Cloudflare; `keep_vars: true` evita que novas publicações as apaguem.
 
 Requer Node 22.13+ e uma conta Cloudflare com Workers, D1, R2 e Access habilitados. Não há chaves nem credenciais neste pacote.
 

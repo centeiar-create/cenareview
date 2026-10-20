@@ -5,7 +5,8 @@ Repositório: `centeiar-create/cenareview` · branch: `main` · diretório raiz:
 ## Recursos
 
 - Worker: `cenareview`.
-- Endereço: https://cenareview.centeiar.workers.dev/admin.
+- Endereço: https://cenareview.centeiodigital.com/.
+- O domínio próprio está declarado em `wrangler.jsonc` com `custom_domain: true`; DNS e certificado são geridos pela Cloudflare. O endereço `workers.dev` permanece ativo para preservar os links anteriores.
 - D1: `cena-revisao`, binding `DB`. O identificador está configurado em `wrangler.jsonc`.
 - R2: `cena-revisao-videos`, binding `BUCKET`, **privado**.
 - Limites no aplicativo: 1 GB no total, 100 MB por vídeo, 200 arquivos ativos, retenção de 30 dias.
@@ -31,7 +32,7 @@ Para migrações futuras, execute `npm run db:migrate` com acesso autorizado à 
 
 As variáveis `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` e `OWNER_EMAIL` ficam em **Worker → Settings → Variables and Secrets**. Não coloque chaves, cookies ou senhas no GitHub. `keep_vars: true` preserva as variáveis definidas no painel nas próximas publicações.
 
-Crie uma aplicação Access do tipo self-hosted para os caminhos `/admin`, `/admin/*` e `/api/admin/*`. Todos devem usar a mesma aplicação/audiência. Permita somente o e-mail do administrador. O Worker também verifica a assinatura do JWT e o e-mail autorizado; sem configuração, a administração fica bloqueada.
+Crie uma aplicação Access do tipo self-hosted para os caminhos `/admin`, `/admin/*` e `/api/admin/*`. Todos devem usar a mesma aplicação/audiência. Inclua esses três caminhos tanto em `cenareview.centeiodigital.com` quanto em `cenareview.centeiar.workers.dev`. Permita somente o e-mail do administrador. O Worker também verifica a assinatura do JWT e o e-mail autorizado; sem configuração, a administração fica bloqueada.
 
 Os caminhos `/r/*` e `/api/review/*` continuam fora do login Access. O revisor usa o link e informa nome/e-mail somente para comentar. O e-mail não é verificado e fica visível apenas na administração.
 
